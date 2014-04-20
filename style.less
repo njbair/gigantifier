@@ -1,0 +1,153 @@
+@bgColor: #222;
+@textColor: #eee;
+@inputBackgroundColor: lighten(@bgColor, 30%);
+@inputTextColor: darken(@textColor, 10%);
+@buttonBackgroundColor: darken(#abcdef, 30%);
+@buttonTextColor: darken(@textColor, 10%);
+
+@viewportPhone: 480px;
+@viewportTabletPortrait: 768px;
+@viewportDesktopSmall: 960px;
+@viewportDesktopLarge: 1210px;
+
+.transform(@string){
+    -webkit-transform: @string;
+    -moz-transform:    @string;
+    -ms-transform:     @string;
+    -o-transform:      @string;
+    transform:         @string;
+}
+
+body
+{
+    background-color: @bgColor;
+    color: @textColor;
+    font-family: sans-serif;
+}
+
+.container
+{
+    width: 1170px;
+    margin: 0 auto;
+
+    @media (max-width: @viewportDesktopLarge)
+    {
+        width: 940px;
+    }
+
+    @media (max-width: @viewportDesktopSmall)
+    {
+        width: 720px;
+    }
+
+    @media (max-width: @viewportTabletPortrait)
+    {
+        width: 100%;
+    }
+}
+
+.app-output
+{
+    margin: 100px 0;
+    font-family: 'Londrina Solid';
+    font-weight: normal;
+    font-size: 128px;
+    line-height: 136px;
+    text-align: center;
+
+    @media (max-width: @viewportPhone)
+    {
+        font-size: 64px;
+        line-height: 72px;
+    }
+}
+
+.app-controls
+{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    box-sizing: border-box;
+    padding: 20px 20px 40px 20px;
+    width: 100%;
+    background-color: lighten(@bgColor, 5%);
+    overflow: hidden;
+    transition: .5s;
+
+    .app-controls-toggle
+    {
+        position: absolute;
+        top: 10px;
+        right: 20px;
+        display: block;
+        background-color: lighten(@bgColor, 10%);
+        width: 24px;
+        height: 24px;
+        border-radius: 12px;
+        transition: .3s;
+        transition-delay: .3s;
+
+        &:after
+        {
+            position: absolute;
+            top: 11px;
+            left: 7px;
+            content: ' ';
+            border-top: 5px solid @textColor;
+            border-left: 5px solid transparent;
+            border-right: 5px solid transparent;
+            border-bottom: none;
+        }
+    }
+
+    a
+    {
+        color: darken(@textColor, 30%);
+        text-decoration: none;
+
+        &:hover
+        {
+            color: darken(@textColor, 15%);
+        }
+    }
+
+    &.hidden
+    {
+        opacity: .5;
+        .transform(translateY(calc(100% - 24px)));
+
+        .app-controls-toggle
+        {
+            .transform(rotate(180deg));
+        }
+
+        &:hover
+        {
+            opacity: 1;
+        }
+    }
+}
+
+.app-input
+{
+    box-sizing: border-box;
+    margin: 30px auto;
+    padding: 20px;
+    border: none;
+    border-radius: 10px;
+    outline: none;
+    background-color: @inputBackgroundColor;
+    width: 100%;
+    text-align: center;
+    font-size: 24px;
+    line-height: 24px;
+    font-weight: normal;
+    color: @inputTextColor;
+    opacity: .5;
+    transition: .5s;
+
+    &:focus
+    {
+        opacity: 1;
+    }
+}
