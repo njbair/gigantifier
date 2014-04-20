@@ -50,8 +50,17 @@ var updateURITimer;
         function init() {
             var uriData = getURIData();
 
+            $(window)
+                .keydown(function(e){
+                    if (e.which === 13) {
+                        $('#appControls').toggleClass('hidden');
+                        $('#appControls:not(.hidden) #appInput').select().focus();
+                    }
+                });
+
             $('#appInput')
                 .keydown(function(e){
+                    /*
                     if (e.which === 13) {
                         $('#appControls').toggleClass('hidden');
                     }
@@ -59,6 +68,8 @@ var updateURITimer;
                     {
                         setTimeout(gigantify, 30);
                     }
+                    */
+                    setTimeout(gigantify, 30);
                 })
                 .focus();
 
