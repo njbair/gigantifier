@@ -64,15 +64,21 @@ body
 
 .app-controls
 {
+    @controlsBgColor: lighten(@bgColor, 5%);
+    @bounceBezier: cubic-bezier(.17, .67, .37, 1.31);
+
     position: fixed;
     bottom: 0;
     left: 0;
     box-sizing: border-box;
-    padding: 20px 20px 40px 20px;
+    padding: 20px 20px 60px 20px;
     width: 100%;
-    background-color: lighten(@bgColor, 5%);
+    background-color: @controlsBgColor;
     overflow: hidden;
-    transition: .5s;
+    .transform(translateY(20px));
+    transition:
+        all .2s @bounceBezier,
+        opacity .2s ease;
 
     .app-controls-toggle
     {
@@ -84,8 +90,7 @@ body
         width: 24px;
         height: 24px;
         border-radius: 12px;
-        transition: .3s;
-        transition-delay: .3s;
+        transition: all .2s @bounceBezier .1s;
 
         &:after
         {
@@ -114,7 +119,7 @@ body
     &.hidden
     {
         opacity: .5;
-        .transform(translateY(calc(100% - 24px)));
+        .transform(translateY(~"calc(100% - 44px)"));
 
         .app-controls-toggle
         {
@@ -144,7 +149,7 @@ body
     font-weight: normal;
     color: @inputTextColor;
     opacity: .5;
-    transition: .5s;
+    transition: all .5s ease;
 
     &:focus
     {

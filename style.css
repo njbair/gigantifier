@@ -41,11 +41,16 @@ body {
   bottom: 0;
   left: 0;
   box-sizing: border-box;
-  padding: 20px 20px 40px 20px;
+  padding: 20px 20px 60px 20px;
   width: 100%;
   background-color: #2f2f2f;
   overflow: hidden;
-  transition: .5s;
+  -webkit-transform: translateY(20px);
+  -moz-transform: translateY(20px);
+  -ms-transform: translateY(20px);
+  -o-transform: translateY(20px);
+  transform: translateY(20px);
+  transition: all 0.2s cubic-bezier(0.17, 0.67, 0.37, 1.31), opacity 0.2s ease;
 }
 .app-controls .app-controls-toggle {
   position: absolute;
@@ -56,8 +61,7 @@ body {
   width: 24px;
   height: 24px;
   border-radius: 12px;
-  transition: .3s;
-  transition-delay: .3s;
+  transition: all 0.2s cubic-bezier(0.17, 0.67, 0.37, 1.31) 0.1s;
 }
 .app-controls .app-controls-toggle:after {
   position: absolute;
@@ -78,11 +82,11 @@ body {
 }
 .app-controls.hidden {
   opacity: .5;
-  -webkit-transform: translateY(calc(76%));
-  -moz-transform: translateY(calc(76%));
-  -ms-transform: translateY(calc(76%));
-  -o-transform: translateY(calc(76%));
-  transform: translateY(calc(76%));
+  -webkit-transform: translateY(calc(100% - 44px));
+  -moz-transform: translateY(calc(100% - 44px));
+  -ms-transform: translateY(calc(100% - 44px));
+  -o-transform: translateY(calc(100% - 44px));
+  transform: translateY(calc(100% - 44px));
 }
 .app-controls.hidden .app-controls-toggle {
   -webkit-transform: rotate(180deg);
@@ -109,7 +113,7 @@ body {
   font-weight: normal;
   color: #d5d5d5;
   opacity: .5;
-  transition: .5s;
+  transition: all .5s ease;
 }
 .app-input:focus {
   opacity: 1;
