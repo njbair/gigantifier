@@ -6,12 +6,11 @@ var updateURITimer;
             name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
             var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
                 results = regex.exec(location.search);
-            return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+            return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
         }
 
         function getURIData() {
             // check for URI segments first, then query strings
-            console.log(window.location.pathname.split('/'));
             if (window.location.pathname.split('/')[1] === 't') {
                 return atob(window.location.pathname.split('/')[2]);
             }
