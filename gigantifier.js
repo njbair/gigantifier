@@ -34,7 +34,7 @@ var updateURITimer;
 
         function gigantify() {
             var newOutput = $('#appInput').val();
-            var newHash = newOutput !== '' ? '/t/' + btoa(newOutput) : '/';
+            var newHash = newOutput !== '' ? 't/' + btoa(newOutput) : '/';
             var formattedOutput = formatOutput(newOutput);
 
             $('#appOutput').html(formattedOutput.replaced);
