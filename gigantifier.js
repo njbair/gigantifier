@@ -21,6 +21,14 @@ var updateURITimer;
             return false;
         }
 
+        function getURIPrefix() {
+            var re = /^(.*)(\/t\/(.*))?$/;
+            var results = re.exec(window.location.pathname);
+
+            console.log(results);
+            return results[1] ? results[1] : "";
+        }
+
         function formatOutput(output) {
             var regex = new RegExp('{{([^\\|]*)\\|([^}]*)}}', 'ig');
             var replaceString = '<span style="color: $1;">$2</span>';
@@ -32,9 +40,9 @@ var updateURITimer;
             };
         }
 
-        function gigantify() {
+        function gigantify(URIPrefix) {
             var newOutput = $('#appInput').val();
-            var newHash = newOutput !== '' ? 't/' + btoa(newOutput) : '/';
+            var newHash = newOutput !== '' ? URIPrefix + '/t/' + btoa(newOutput) : URIPrefix;
             var formattedOutput = formatOutput(newOutput);
 
             $('#appOutput').html(formattedOutput.replaced);
@@ -47,7 +55,8 @@ var updateURITimer;
         }
 
         function init() {
-            var uriData = getURIData();
+            var URIData = getURIData();
+            var URIPrefix = getURIPrefix();
 
             $(window)
                 .keydown(function(e){
@@ -59,16 +68,9 @@ var updateURITimer;
 
             $('#appInput')
                 .keydown(function(e){
-                    /*
-                    if (e.which === 13) {
-                        $('#appControls').toggleClass('hidden');
-                    }
-                    else
-                    {
-                        setTimeout(gigantify, 30);
-                    }
-                    */
-                    setTimeout(gigantify, 30);
+                    setTimeout(function(){
+                        gigantify(URIPrefix)
+                    }, 30);
                 })
                 .focus();
 
@@ -78,9 +80,9 @@ var updateURITimer;
                     $('#appControls').toggleClass('hidden');
                 });
 
-            if (uriData) {
-                $('#appInput').val(uriData);
-                gigantify();
+            if (URIData) {
+                $('#appInput').val(URIData);
+                gigantify(URIPrefix);
             }
             else {
                 $('#appControls').removeClass('hidden');
